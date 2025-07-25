@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/normalize.css" />
+  <link rel="stylesheet" href="/css/sanitize.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>Document</title>
+</head>
+<body>
+  <div class="body_wrapper">
+    <section class="section section_main">
+      <ul class="mainmenu_list">
+        <li class="mainmenu_li">
+          <button id="menu_calc" class="btn btn_main">
+            <img src="./img/calculator.svg" alt="calculator" loading="lazy" />
+            <p>
+              사육성적
+              <span class="word_break"> </span>
+              <span class="word_keep">계산기</span>
+            </p>
+          </button>
+        </li>
+        <li class="mainmenu_li">
+          <button id="menu_part" class="btn btn_main">
+            <img src="./img/partition.svg" alt="partition" loading="lazy" />
+            <p>
+              입추분할
+              <span class="word_break"> </span>
+              <span class="word_keep">계산기</span>
+            </p>
+          </button>
+        </li>
+        <li class="mainmenu_li">
+          <button id="menu_feed" class="btn btn_main">
+            <img src="./img/feedamount.svg" alt="chicken" loading="lazy" />
+            <p>
+              일일섭취
+              <span class="word_break"> </span>
+              <span class="word_keep">계산기</span>
+            </p>
+          </button>
+        </li>
+      </ul>
+    </section>
+    <section class="section section_mid">
+      <ul class="result_list">
+        <li><span class="result_key">사육일수(일)</span><span id="day" class="result_value"></span></li>
+        <li><span class="result_key">입추수수(수)</span><span id="in_count" class="result_value"></span></li>
+        <li><span class="result_key">출하수수(수)</span><span id="out_count" class="result_value"></span></li>
+        <li><span class="result_key">출하총중량(kg)</span><span id="total_weight" class="result_value"></span></li>
+        <li><span class="result_key">총사료량(kg)</span><span id="feed_amount" class="result_value"></span></li>
+        <li><span class="result_key">평균체중(kg)</span><span id="average_weight" class="result_value"></span></li>
+        <li><span class="result_key">사료효율</span><span id="feed_efficiency" class="result_value"></span></li>
+        <li><span class="result_key">생산지수</span><span id="product_index" class="result_value"></span></li>
+        <li><span class="result_key">육성율(%)</span><span id="upbringing_rate" class="result_value"></span></li>
+      </ul>
+    </section>
+    <section class="section section_bottom">
+      <div class="footer_wrapper">
+        <div>개발: 김민홍</div>
+        <div><img src="./img/chicken.svg" id="favicon"/></div>
+        <div>문의: suwonchkmh@naver.com</div>
+      </div>
+    </section>
+  </div>
+  <script src="./script.js"></script>
+  <script>
+    // 페이지가 로딩될때, localStorage에 있는 변수값들을 가져와서 사용
+    document.addEventListener("DOMContentLoaded", () => {
+      const response = localStorage.getItem("data");
+      const parseData = JSON.parse(response);
+      if (!parseData) return alert("데이터가 없습니다.");
+      console.log(parseData);
+      const {day, in_count, out_count, total_weight, feed_amount } = parseData;
+      const ubbringingDay = parseFloat(day);
+      const inCount = parseFloat(in_count);
+      const outCount = parseFloat(out_count);
+      const totalWeight = parseFloat(total_weight);
+      const feedAmount = parseFloat(feed_amount);
+      const averageWeight = (totalWeight / outCount).toFixed(3);
+      const feedEfficiency = (feedAmount / totalWeight).toFixed(3);
+      const upbringingRate = ((outCount / inCount) * 100).toFixed(1);
+      const productIndex = ((upbringingRate * averageWeight) / (ubbringingDay * feedEfficiency) * 100).toFixed(2);
+      
+      if (!(ubbringingDay && inCount && outCount && totalWeight && feedAmount && averageWeight && feedEfficiency && upbringingRate && productIndex)) return alert("누락된 값이 있습니다. 계산을 완료할 수 없습니다.");
+
+      document.getElementById("day").innerText = ubbringingDay;
+      document.getElementById("in_count").innerText = inCount.toLocaleString();
+      document.getElementById("out_count").innerText = outCount.toLocaleString();
+      document.getElementById("total_weight").innerText = totalWeight.toLocaleString();
+      document.getElementById("feed_amount").innerText = feedAmount.toLocaleString();
+      document.getElementById("average_weight").innerText = averageWeight;
+      document.getElementById("feed_efficiency").innerText = feedEfficiency;
+      document.getElementById("product_index").innerText = productIndex;
+      document.getElementById("upbringing_rate").innerText = upbringingRate;
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/normalize.css" />
+  <link rel="stylesheet" href="/css/sanitize.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>Document</title>
+</head>
+<body>
+  <div class="body_wrapper">
+    <section class="section section_main">
+      <ul class="mainmenu_list">
+        <li class="mainmenu_li">
+          <button id="menu_calc" class="btn btn_main">
+            <img src="./img/calculator.svg" alt="calculator" loading="lazy" />
+            <p>
+              사육성적
+              <span class="word_break"> </span>
+              <span class="word_keep">계산기</span>
+            </p>
+          </button>
+        </li>
+        <li class="mainmenu_li">
+          <button id="menu_part" class="btn btn_main">
+            <img src="./img/partition.svg" alt="partition" loading="lazy" />
+            <p>
+              입추분할
+              <span class="word_break"> </span>
+              <span class="word_keep">계산기</span>
+            </p>
+          </button>
+        </li>
+        <li class="mainmenu_li">
+          <button id="menu_feed" class="btn btn_main">
+            <img src="./img/feedamount.svg" alt="chicken" loading="lazy" />
+            <p>
+              일일섭취
+              <span class="word_break"> </span>
+              <span class="word_keep">계산기</span>
+            </p>
+          </button>
+        </li>
+      </ul>
+    </section>
+    <section class="section section_mid">
+      <div id="mid_wrapper">
+        <div id="input_wrapper">
+          <label for="main_input">총 입추수수</label>
+          <input type="number" id="main_input" name="main_input" placeholder="입추수수를 입력하세요" />
+        </div>
+        <div id="remain_div" style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: .2rem;">
+          <div style="min-width: 10rem;">
+            ◆ %합계 : <span id="total_percent"></span>
+          </div>
+          <div style="min-width: 10rem;">
+            ◆ 나머지 : <span id="remain"></span>
+          </div>
+        </div>
+        <div id="input_card_wrapper">
+          <div class="input_card">
+            <label for="part1">1동</label>
+            <input type="number" min="0" max="100" id="part1" name="part1" />
+            <div class="part_percent">%</div>
+            <div id="part1_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part2">2동</label>
+            <input type="number" min="0" max="100" id="part2" name="part2" />
+            <div class="part_percent">%</div>
+            <div id="part2_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part3">3동</label>
+            <input type="number" min="0" max="100" id="part3" name="part3" />
+            <div class="part_percent">%</div>
+            <div id="part3_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part4">4동</label>
+            <input type="number" min="0" max="100" id="part4" name="part4" />
+            <div class="part_percent">%</div>
+            <div id="part4_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part5">5동</label>
+            <input type="number" min="0" max="100" id="part5" name="part5" />
+            <div class="part_percent">%</div>
+            <div id="part5_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part6">6동</label>
+            <input type="number" min="0" max="100" id="part6" name="part6" />
+            <div class="part_percent">%</div>
+            <div id="part6_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part7">7동</label>
+            <input type="number" min="0" max="100" id="part7" name="part7" />
+            <div class="part_percent">%</div>
+            <div id="part7_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part8">8동</label>
+            <input type="number" min="0" max="100" id="part8" name="part8" />
+            <div class="part_percent">%</div>
+            <div id="part8_result" class="part_result"></div>
+          </div>
+          <div class="input_card">
+            <label for="part9">9동</label>
+            <input type="number" min="0" max="100" id="part9" name="part9" />
+            <div class="part_percent">%</div>
+            <div id="part9_result" class="part_result"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section_bottom">
+      <div class="footer_wrapper">
+        <div>개발: 김민홍</div>
+        <div><img src="./img/chicken.svg" id="favicon"/></div>
+        <div>문의: suwonchkmh@naver.com</div>
+      </div>
+    </section>
+  </div>
+  <script src="./script.js"></script>
+  <script>
+    // 처음 페이지 로딩시, localstorage에 저장되어있는 입추수수 삭제
+    window.addEventListener("DOMContentLoaded", () => {
+      localStorage.clear();  // 모든 키 삭제
+    });
+
+    // VALIDATION
+    const $main_input = document.querySelector("#main_input");
+    const $part1 = document.querySelector("#part1");
+    const $part2 = document.querySelector("#part2");
+    const $part3 = document.querySelector("#part3");
+    const $part4 = document.querySelector("#part4");
+    const $part5 = document.querySelector("#part5");
+    const $part6 = document.querySelector("#part6");
+    const $part7 = document.querySelector("#part7");
+    const $part8 = document.querySelector("#part8");
+    const $part9 = document.querySelector("#part9");
+    const $part1_result = document.querySelector("#part1_result");
+    const $part2_result = document.querySelector("#part2_result");
+    const $part3_result = document.querySelector("#part3_result");
+    const $part4_result = document.querySelector("#part4_result");
+    const $part5_result = document.querySelector("#part5_result");
+    const $part6_result = document.querySelector("#part6_result");
+    const $part7_result = document.querySelector("#part7_result");
+    const $part8_result = document.querySelector("#part8_result");
+    const $part9_result = document.querySelector("#part9_result");
+    const $remain = document.querySelector("#remain");
+    const $totalPercent = document.querySelector("#total_percent");
+
+    // METHOD START
+
+    // 100단위에서 반올림하는 배열로 바꾸어 리턴(length = 9)
+    // 반올림한 뒤, 각 %에 해당하는 마릿수로 바꾸어 배열로 저장
+    function rtnValueArr(userInCount, partArr) {
+      return partArr.map(p => p > 0 ? Math.round(userInCount * (p/100) / 100) * 100 : 0);
+    } 
+
+    // 입력%의 총합이 100%를 초과할 경우, 경고창 띄우던 기능 삭제
+    // function check100Percent(partArr) {
+    //   const sum = partArr.filter(p => p).reduce((prev,curr) => prev + curr, 0);
+    //   if(sum > 100) return alert('100%를 초과할 수 없습니다');
+    //   if(sum < 0) return alert('합계 퍼센트 값이 마이너스가 될 수 없습니다');
+    // }
+
+    // 숫자를 받아서 천단위 콤마찍어 문자열로 반환
+    function addComma(number) {
+      if(!number) return 0;
+      return number.toLocaleString();
+    }
+
+    function enterCalculationValue(userInCount) {
+      const part1 = $part1.valueAsNumber || 0;
+      const part2 = $part2.valueAsNumber || 0;
+      const part3 = $part3.valueAsNumber || 0;
+      const part4 = $part4.valueAsNumber || 0;
+      const part5 = $part5.valueAsNumber || 0;
+      const part6 = $part6.valueAsNumber || 0;
+      const part7 = $part7.valueAsNumber || 0;
+      const part8 = $part8.valueAsNumber || 0;
+      const part9 = $part9.valueAsNumber || 0;
+
+      // 합계 %가 100을 넘지 않도록 설정
+      let partArr = [part1,part2,part3,part4,part5,part6,part7,part8,part9];
+      // check100Percent(partArr);
+
+      const getCalcVal1 = rtnValueArr(userInCount, partArr)[0] || 0;
+      const getCalcVal2 = rtnValueArr(userInCount, partArr)[1] || 0;
+      const getCalcVal3 = rtnValueArr(userInCount, partArr)[2] || 0;
+      const getCalcVal4 = rtnValueArr(userInCount, partArr)[3] || 0;
+      const getCalcVal5 = rtnValueArr(userInCount, partArr)[4] || 0;
+      const getCalcVal6 = rtnValueArr(userInCount, partArr)[5] || 0;
+      const getCalcVal7 = rtnValueArr(userInCount, partArr)[6] || 0;
+      const getCalcVal8 = rtnValueArr(userInCount, partArr)[7] || 0;
+      const getCalcVal9 = rtnValueArr(userInCount, partArr)[8] || 0;
+
+      $part1_result.textContent = addComma(getCalcVal1);
+      $part2_result.textContent = addComma(getCalcVal2);
+      $part3_result.textContent = addComma(getCalcVal3);
+      $part4_result.textContent = addComma(getCalcVal4);
+      $part5_result.textContent = addComma(getCalcVal5);
+      $part6_result.textContent = addComma(getCalcVal6);
+      $part7_result.textContent = addComma(getCalcVal7);
+      $part8_result.textContent = addComma(getCalcVal8);
+      $part9_result.textContent = addComma(getCalcVal9);
+
+      // 입력한 총입추수수 중 입력%로 사용되어진 마릿수를 제외한 나머지를 #remain에 입력;
+      // 토탈 %합계도 사용자에게 보여줌
+      let useCount;
+      useCount = rtnValueArr(userInCount, partArr).reduce((prev, curr) => prev + curr);
+      const remain = userInCount - useCount;
+      $remain.textContent = addComma(remain);
+      const total_percent = partArr.reduce((prev, curr) => prev + curr);
+      $totalPercent.textContent = total_percent || 0;
+    } 
+
+
+    // METHOD END
+
+    $main_input.addEventListener("input", (e) => {
+      const userInCount = e.target.valueAsNumber;
+      localStorage.setItem("userInCount",userInCount);
+      enterCalculationValue(userInCount);
+    });
+    $part1.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part2.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part3.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part4.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part5.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part6.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part7.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part8.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+    $part9.addEventListener("input", () => enterCalculationValue(parseInt(localStorage.getItem("userInCount")) || 0));
+
+    // 퍼센트인풋부분 입력했다가 지웠을 경우, 계산값이 사라지지않는 현상 수정해야함
+
+    // MAIN INPUT VALIDATION
+    const checkMinus = "0이상의 정수만 입력가능합니다. 입력값을 확인해주세요.";
+    const num_regexp = /^[1-9]\d*$/;
+
+    $main_input.addEventListener("input", (e) => {
+      const {valueAsNumber} = e.target;
+      if(!(e.target.value)) return;
+      if(!(num_regexp.test(valueAsNumber))) return alert(checkMinus);
+    });
+  </script>
+</body>
+</html>
