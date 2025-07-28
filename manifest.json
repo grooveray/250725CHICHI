@@ -1,0 +1,15 @@
+{
+  "name": "CHICHI119",
+  "short_name": "CHICHI119",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
