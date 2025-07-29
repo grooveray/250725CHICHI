@@ -53,11 +53,13 @@
       </ul>
     </section>
     <section class="section section_mid">
+      <p><button id="kakao_btn" onclick="shareKakao()"><img id="kakao_logo" src="/img/KakaoTalk_logo.svg" alt="Share to KaKaoTalk" /><span id="kakao_btn_text">공유하기</span></button></p>
+      <p>CHICHI119를 카카오톡으로 공유해주세요.</p>
       <p>서버비용 이슈로 웹앱개편을 하였습니다.</p>
       <p>이제는 데이터가 저장되지 않습니다.</p>
       <p>입추분할 계산기가 추가되었어요.</p>
-      <p>기존 프로그램의 개인데이터가 필요하신분은 이메일로 문의주세요.</p>
-      <p>입추분할 계산기가 추가되었어요.</p>
+      <p>일일섭취 계산기가 추가되었어요.</p>
+      <p>건의나 수정사항은 언제든지 문의주세요.</p>
     </section>
     <section class="section section_bottom">
       <div class="footer_wrapper">
@@ -68,6 +70,42 @@
     </section>
   </div>
   <script src="/script.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+  const my_js_key = "02fc77230a6bd1c5b489f52ff22ec258";
+  const title = "CHICHI119";
+  const description = "육계사육 성적표";
+  const site = "https://chichi119.netlify.app";
+
+  // 1. SDK 초기화
+  Kakao.init(my_js_key);
+
+  // 2. 공유 함수
+  function shareKakao() {
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title,
+        description,
+        imageUrl: `${site}/icon-512.png`, // 필수: 썸네일 이미지
+        link: {
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href
+        }
+      },
+      buttons: [
+        {
+          title: '웹사이트로 이동',
+          link: {
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href
+          }
+        }
+      ]
+    });
+  }
+</script>
+
 </body>
 </html>
 
