@@ -53,32 +53,34 @@
       </ul>
     </section>
     <section class="section section_mid">
-      <div class="share-menu">
-        <div id="share_result_title">결과보내기</div>
-        <div id="share_result_btn1">
-          <button class="share-button" onclick="shareEmail()">
-            <img src="/img/email.svg" alt="메일 아이콘">
-            <span>이메일</span>
-          </button>
+      <div class="form">
+        <div class="share-menu">
+          <div id="share_result_title">결과보내기</div>
+          <div id="share_result_btn1">
+            <button class="share-button" onclick="shareEmail()">
+              <img src="/img/email.svg" alt="메일 아이콘">
+              <span>이메일</span>
+            </button>
+          </div>
+          <div id="share_result_btn2">
+            <button class="share-button" onclick="shareSMS()">
+              <img src="/img/sms.svg" alt="문자 아이콘">
+              <span>문자</span>
+            </button>
+          </div>
         </div>
-        <div id="share_result_btn2">
-          <button class="share-button" onclick="shareSMS()">
-            <img src="/img/sms.svg" alt="문자 아이콘">
-            <span>문자</span>
-          </button>
-        </div>
+        <ul class="result_list">
+          <li><span class="result_key">사육일수(일)</span><span id="day" class="result_value"></span></li>
+          <li><span class="result_key">입추수수(수)</span><span id="in_count" class="result_value"></span></li>
+          <li><span class="result_key">출하수수(수)</span><span id="out_count" class="result_value"></span></li>
+          <li><span class="result_key">출하총중량(kg)</span><span id="total_weight" class="result_value"></span></li>
+          <li><span class="result_key">총사료량(kg)</span><span id="feed_amount" class="result_value"></span></li>
+          <li><span class="result_key">평균체중(kg)</span><span id="average_weight" class="result_value"></span></li>
+          <li><span class="result_key">사료효율</span><span id="feed_efficiency" class="result_value"></span></li>
+          <li><span class="result_key">생산지수</span><span id="product_index" class="result_value"></span></li>
+          <li><span class="result_key">육성율(%)</span><span id="upbringing_rate" class="result_value"></span></li>
+        </ul>
       </div>
-      <ul class="result_list">
-        <li><span class="result_key">사육일수(일)</span><span id="day" class="result_value"></span></li>
-        <li><span class="result_key">입추수수(수)</span><span id="in_count" class="result_value"></span></li>
-        <li><span class="result_key">출하수수(수)</span><span id="out_count" class="result_value"></span></li>
-        <li><span class="result_key">출하총중량(kg)</span><span id="total_weight" class="result_value"></span></li>
-        <li><span class="result_key">총사료량(kg)</span><span id="feed_amount" class="result_value"></span></li>
-        <li><span class="result_key">평균체중(kg)</span><span id="average_weight" class="result_value"></span></li>
-        <li><span class="result_key">사료효율</span><span id="feed_efficiency" class="result_value"></span></li>
-        <li><span class="result_key">생산지수</span><span id="product_index" class="result_value"></span></li>
-        <li><span class="result_key">육성율(%)</span><span id="upbringing_rate" class="result_value"></span></li>
-      </ul>
     </section>
     <section class="section section_bottom">
       <div class="footer_wrapper">

@@ -54,13 +54,13 @@
     </section>
     <section class="section section_mid">
       <div class="form">
-        <div>
+        <div id="feed_amount_form_description">
           <p>0일부터 입력가능하며, 입추일이라면 1일을 입력해주세요.</p>
           <p>사육일수는 0일부터 43일까지만 입력해주세요.</p>
           <p>일일섭취량은 100%정확하지 않을 수 있습니다.</p>
           <p>수정이 필요한 일일섭취량이 있다면 이메일로 건의해주세요.</p>
         </div>
-        <table>
+        <table id="feed_amount_form_table">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -72,20 +72,20 @@
           <tbody>
             <tr>
               <th scope="row">1계군</th>
-              <td><input name="remain_count1" id="remain_count1" class="table_input" type="number"/></td>
-              <td><input name="upbringing_day1" id="upbringing_day1" class="table_input" type="number"/></td>
+              <td><input name="remain_count1" id="remain_count1" type="number"/></td>
+              <td><input name="upbringing_day1" id="upbringing_day1" type="number"/></td>
               <td><span name="feed_result1" id="feed_result1"></span></td>
             </tr>
             <tr>
               <th scope="row">2계군</th>
-              <td><input min="0" max="43" step="1" name="remain_count2" id="remain_count2" class="table_input" type="number"/></td>
-              <td><input min="0" max="43" step="1" name="upbringing_day2" id="upbringing_day2" class="table_input" type="number"/></td>
+              <td><input min="0" max="43" step="1" name="remain_count2" id="remain_count2" type="number"/></td>
+              <td><input min="0" max="43" step="1" name="upbringing_day2" id="upbringing_day2" type="number"/></td>
               <td><span name="feed_result2" id="feed_result2"></span></td>
             </tr>
             <tr>
               <th scope="row">3계군</th>
-              <td><input min="0" max="43" step="1" name="remain_count3" id="remain_count3" class="table_input" type="number"/></td>
-              <td><input min="0" max="43" step="1" name="upbringing_day3" id="upbringing_day3" class="table_input" type="number"/></td>
+              <td><input min="0" max="43" step="1" name="remain_count3" id="remain_count3" type="number"/></td>
+              <td><input min="0" max="43" step="1" name="upbringing_day3" id="upbringing_day3" type="number"/></td>
               <td><span name="feed_result3" id="feed_result3"></span></td>
             </tr>
           </tbody>
@@ -98,7 +98,7 @@
             </tr>
           </tfoot>
         </table>
-        <div>
+        <div id="feed_amount_form_multiply">
           <label for="multiply">계산할 일수(일)</label>
           <input style="width: 3.5rem; margin: 0 2rem 1rem 1rem;" step="1" name="multiply" id="multiply" type="number"/>
           <span id="multiply_result"></span>
