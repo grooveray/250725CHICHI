@@ -50,6 +50,10 @@ body {
   box-sizing: border-box;
   overflow: hidden;
 }
+p {
+  word-break: keep-all;
+  /* white-space: pre-line; */
+}
 
 /* SECTION */
 .section_main {
