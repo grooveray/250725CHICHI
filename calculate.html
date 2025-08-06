@@ -20,8 +20,8 @@
 </head>
 <body>
   <div class="body_wrapper">
-    <section class="section section_main">
-      <ul class="mainmenu_list">
+    <section id="nav_placeholder" class="section section_main">
+      <!-- <ul class="mainmenu_list">
         <li class="mainmenu_li">
           <button id="menu_calc" class="btn btn_main">
             <img src="/img/calculator.svg" alt="calculator" loading="lazy" />
@@ -52,7 +52,7 @@
             </p>
           </button>
         </li>
-      </ul>
+      </ul> -->
     </section>
     <section class="section section_mid">
       <form action="./result1.html" id="form_calc" class="form">
@@ -81,15 +81,16 @@
         </div>
       </form>
     </section>
-    <section class="section section_bottom">
-      <div class="footer_wrapper">
+    <section id="footer_placeholder" class="section section_bottom">
+      <!-- <div class="footer_wrapper">
         <div>개발: 김민홍</div>
-        <div><img src="./img/chicken.svg" id="favicon"/></div>
+        <div><img src="/img/chicken.svg" id="favicon"/></div>
         <div>문의: suwonchkmh@naver.com</div>
-      </div>
+      </div> -->
     </section>
   </div>
-  <script src="./script.js"></script>
+  <!-- 공통자바스크립트 -->
+  <script type="module" src="/js/main.js" defer></script>
   <script>
     // variant
     const $form_calc = document.querySelector("#form_calc");
