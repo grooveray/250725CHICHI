@@ -87,46 +87,14 @@
       <!-- 이 자리에 footer.html이 들어감 -->
     </section>
   </div>
-  <!-- 공통자바스크립트 -->
-  <script type="module" src="/js/main.js" defer></script>
+
   <!-- 카카오톡 공유하기 -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-  <!-- 인덱스페이지 스크립트 -->
-  <script>
-  const my_js_key = "02fc77230a6bd1c5b489f52ff22ec258";
-  const title = "CHICHI119";
-  const description = "육계사육 성적표";
-  const site = "https://chichi119.netlify.app";
-
-  // 1. SDK 초기화
-  Kakao.init(my_js_key);
-
-  // 2. 공유 함수
-  function shareKakao() {
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title,
-        description,
-        imageUrl: `${site}/icon-512.png`, // 필수: 썸네일 이미지
-        link: {
-          mobileWebUrl: window.location.href,
-          webUrl: window.location.href
-        }
-      },
-      buttons: [
-        {
-          title: '웹사이트로 이동',
-          link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href
-          }
-        }
-      ]
-    });
-  }
-</script>
-
+  <!-- 공통자바스크립트 -->
+  <script type="module" src="/js/main.js" defer></script>
+  <!-- index.js전용 스크립트: 카카오톡 공유관련 코드 -->
+  <script type="module" src="/js/index.js" defer></script>
+  
 </body>
 </html>
 
