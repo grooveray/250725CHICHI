@@ -1,4 +1,6 @@
-// 리팩토링 필요!!!!!
+import { getDailyIntake } from "./script.js";
+import { getSumMultiDailyIntake } from "./script.js";
+import { addComma } from "./script.js";
 
 const $remainCount1 = document.querySelector("#remain_count1");
 const $remainCount2 = document.querySelector("#remain_count2");
@@ -25,51 +27,7 @@ const daily_intake = [
 
 let result_obj = {};
 
-// METHOD START
-
-// 일일섭취량 기준표와 사육일수, 남은수수를 가지고 일일섭취량을 계산해줌
-function getDailyIntake(dailyIntakeArr, upbringingDay, remainCount) {
-  // 일일섭취량표에서 값을 찾아오고
-  const findIntake = dailyIntakeArr[upbringingDay];
-  // g단위를 kg단위로 바꾸고
-  const transKG = findIntake / 1000;
-  // 구한값을 현재수수와 곱해주고
-  const calcIntake = transKG * remainCount;
-  // 소수점이하는 반올림하고
-  const roundIntake = Math.round(calcIntake);
-  // 이렇게 가공한 값이 false일 경우, 0을 리턴
-  if (!roundIntake) return 0;
-  return roundIntake;
-}
-// 계산할 일수 값을 구하기 위해 입력사육일수에서 +일수만큼 일일섭취량을 찾아서 더해줌
-// 사육일수가 0이거나 없을 경우, 해당 데이터가 합산되지 않게 하기
-function getSumMultiDailyIntake(
-  dailyIntakeArr,
-  upbringingDay,
-  remainCount,
-  multiplyDay
-) {
-  let dailyIntakeResultArr = [];
-  for (let i = 0; i < multiplyDay; i++) {
-    const data = !upbringingDay
-      ? 0
-      : getDailyIntake(dailyIntakeArr, upbringingDay + i, remainCount);
-    dailyIntakeResultArr.push(data);
-  }
-  if (!dailyIntakeResultArr.length) {
-    return 0;
-  } else {
-    const sum = dailyIntakeResultArr.reduce((prev, curr) => prev + curr);
-    return sum;
-  }
-}
-
-// 숫자를 받아서 천단위 콤마찍어 문자열로 반환
-function addComma(number) {
-  if (!number) return 0;
-  return number.toLocaleString();
-}
-
+// METHOD START <-- 이 메소드 부분은 시간이 생길때, 어떻게 보기좋게 리팩토링할지 고민해보자
 function getInputEvent(target) {
   target.addEventListener("input", (e) => {
     const { valueAsNumber } = e.target;
@@ -109,18 +67,10 @@ function getInputEvent(target) {
       default:
         break;
     }
-
     // 인풋변동이 있을때마다 해당계군의 일섭취량에 값넣어주기
     $feedResult1.textContent = addComma(result_obj.feed_result1);
     $feedResult2.textContent = addComma(result_obj.feed_result2);
     $feedResult3.textContent = addComma(result_obj.feed_result3);
-    // if(result_obj.feed_result1) {$feedResult1.textContent = addComma(result_obj.feed_result1);}
-    // else {$feedResult1.textContent = 0;}
-    // if(result_obj.feed_result2) {$feedResult2.textContent = (result_obj.feed_result2).toLocaleString();}
-    // else {$feedResult2.textContent = 0;}
-    // if(result_obj.feed_result3) {$feedResult3.textContent = (result_obj.feed_result3).toLocaleString();}
-    // else {$feedResult3.textContent = 0;}
-
     // 현재수수 계(합계)
     const count1 = result_obj.remain_count1 || 0;
     const count2 = result_obj.remain_count2 || 0;
@@ -128,7 +78,6 @@ function getInputEvent(target) {
     const sum_count = count1 + count2 + count3;
     const remain_result4 = addComma(sum_count);
     $remainCount4.textContent = remain_result4;
-
     // 사육일수 계(평균)
     const day1 = result_obj.upbringing_day1 || 0;
     const day2 = result_obj.upbringing_day2 || 0;
@@ -140,7 +89,6 @@ function getInputEvent(target) {
     $upbringingDay4.textContent = true_count
       ? ((day1 + day2 + day3) / true_count).toFixed(2)
       : 0;
-
     // 일섭취량 계(합계)
     const result1 = result_obj.feed_result1 || 0;
     const result2 = result_obj.feed_result2 || 0;
